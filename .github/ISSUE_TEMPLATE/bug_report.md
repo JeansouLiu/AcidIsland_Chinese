@@ -1,33 +1,36 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-
+about: 反馈一个 bug
 ---
 
-**Description**
-A clear and concise description of what the bug is.
+## 注意：请前往[原作者页面](https://github.com/BentoBoxWorld/AcidIsland)提交 issue，本页面仅提供翻译
 
-**Steps to reproduce the behavior:**
+**简要描述**
+简要描述你发现的 bug.
+
+**如何使 bug 发生:**
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**预期结果**
+简要描述你认为正常的结果.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**截图**
+如果可能的话，添加屏幕截图可以帮你解释 bug.
 
-**Server Information:**
+**服务器信息:**
 
-[Please complete the following information:]
- - Database being used (Flat file, MySQL, Mongo): []
- - OS: [e.g. iOS]
- - Java Version: [e.g. Java 8]
- - BentoBox version: [e.g. 1.7.2.21]
- - Addons installed? [Do '/bentobox version' and copy/paste from the console]
- - Other plugins? [Do '/plugins' and copy/paste from the console]
+[请完整填写以下内容:]
 
-**Additional context**
-Add any other context about the problem here.
+ - 数据库类型 (Flat file, MySQL, Mongo): []
+ - 操作系统: [如 iOS]
+ - Java 版本: [如 Java 8]
+ - BentoBox 版本: [如 1.7.2.21]
+ - 是否装有扩展? [执行 '/bentobox version' 然后粘贴其内容至此处]
+ - 其它插件? [执行 '/plugins' 并粘贴内容至此处]
+
+**其它信息**
+添加你所知道的其他信息.

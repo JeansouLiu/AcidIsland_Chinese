@@ -1,17 +1,18 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-
+about: 请求新功能
 ---
 
-**Is your feature request related to a problem? Please describe.**
+## 请在原作者页面发 issue
+
+**新功能是否与当前的扩展 bug 有关? 请说明.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-**Describe the solution you'd like**
+**描述你的解决方案**
 A clear and concise description of what you want to happen.
 
-**Describe alternatives you've considered**
+**描述你认为正确的替代方案**
 A clear and concise description of any alternative solutions or features you've considered.
 
-**Additional context**
+**其它信息**
 Add any other context or screenshots about the feature request here.
