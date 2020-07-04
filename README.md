@@ -16,7 +16,7 @@ AcidIsland™ 是一个 BentoBox 扩展, 所以要运行 AcidIsland™ 游戏, �
 
 这是 SkyBlock 的一个分支. 你将不用再担心坠落, 但是你必须时刻提防着酸水，访问其他玩家的岛屿将只能通过坐船.
 
-## Installation
+## 安装
 
 1. 安装 BentoBox 并至少启动一次服务器.
 2. 放置此扩展 jar 至 bentobox\addons 文件夹(前两步可合并为创建 bentobox\addons 文件夹然后把扩展扔进去，如果你不想启动一次服务器再关闭的话).
