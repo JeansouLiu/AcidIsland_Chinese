@@ -1,3 +1,5 @@
+可加入汉化测试服务器 mc.jeansou.com 查看汉化效果
+
 AcidIsland™
 ===========
 [![Build Status](https://ci.codemc.org/buildStatus/icon?job=BentoBoxWorld/AcidIsland)](https://ci.codemc.org/job/BentoBoxWorld/job/AcidIsland/)
