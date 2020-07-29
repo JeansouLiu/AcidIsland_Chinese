@@ -62,7 +62,7 @@ public class AcidIsland extends GameModeAddon {
         settings = config.loadConfigObject();
         if (settings == null) {
             // Woops
-            this.logError("AcidIsland settings could not load! Addon disabled.");
+            this.logError("无法加载酸岛设置! 扩展已禁用.");
             this.setState(State.DISABLED);
             if (acidTask != null) {
                 acidTask.cancelTasks();
@@ -112,7 +112,7 @@ public class AcidIsland extends GameModeAddon {
     public void createWorlds() {
         String worldName = settings.getWorldName().toLowerCase();
         if (getServer().getWorld(worldName) == null) {
-            getLogger().info("Creating AcidIsland...");
+            getLogger().info("生成酸岛世界中...");
         }
         // Create the world if it does not exist
         chunkGenerator = new ChunkGeneratorWorld(this);
@@ -120,14 +120,14 @@ public class AcidIsland extends GameModeAddon {
         // Make the nether if it does not exist
         if (settings.isNetherGenerate()) {
             if (getServer().getWorld(worldName + NETHER) == null) {
-                log("Creating AcidIsland's Nether...");
+                log("生成酸岛下界中...");
             }
             netherWorld = settings.isNetherIslands() ? getWorld(worldName, World.Environment.NETHER, chunkGenerator) : getWorld(worldName, World.Environment.NETHER, null);
         }
         // Make the end if it does not exist
         if (settings.isEndGenerate()) {
             if (getServer().getWorld(worldName + THE_END) == null) {
-                log("Creating AcidIsland's End World...");
+                log("生成酸岛末地中...");
             }
             endWorld = settings.isEndIslands() ? getWorld(worldName, World.Environment.THE_END, chunkGenerator) : getWorld(worldName, World.Environment.THE_END, null);
         }
@@ -167,7 +167,7 @@ public class AcidIsland extends GameModeAddon {
     @Override
     public void onReload() {
         if (loadSettings()) {
-            log("Reloaded AcidIsland settings");
+            log("扩展重载成功");
         }
     }
 

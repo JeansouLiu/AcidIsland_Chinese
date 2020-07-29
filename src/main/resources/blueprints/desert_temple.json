@@ -1,11 +1,11 @@
 {
   "uniqueId": "desert_temple",
   "icon": "CACTUS",
-  "displayName": "Desert Temple",
+  "displayName": "沙岛",
   "description": [
-    "You find yourself",
-    "on a desert island",
-    "with a hidden secret!"
+    "你发现你在一个",
+    "暗藏宝藏的",
+    "沙岛上!"
   ],
   "requirePermission": false,
   "blueprints": {

@@ -1,12 +1,12 @@
 {
   "uniqueId": "default",
   "icon": "PRISMARINE",
-  "displayName": "§eThe Original AcidIsland",
+  "displayName": "§e经典酸岛",
   "description": [
-    "§bAn island with a sheep - baa!",
-    "§aIncludes an Overworld island",
-    "§cIncludes a Nether island",
-    "§6Includes an End island"
+    "§b岛上有一只羊哦 - 咩!",
+    "§a包括一个主世界岛屿",
+    "§c一个下界岛",
+    "§6和一个末地岛"
   ],
   "requirePermission": false,
   "blueprints": {

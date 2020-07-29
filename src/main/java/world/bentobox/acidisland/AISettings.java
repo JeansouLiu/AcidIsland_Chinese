@@ -28,75 +28,72 @@ import world.bentobox.bentobox.database.objects.adapters.PotionEffectListAdapter
  * @author tastybento
  *
  */
-@ConfigComment("AcidIsland Configuration [version]")
+@ConfigComment("AcidIsland [version] 配置文件")
 @StoreAt(filename="config.yml", path="addons/AcidIsland") // Explicitly call out what name this should have.
 public class AISettings implements WorldSettings {
 
     // ---------------------------------------------
 
     // Command
-    @ConfigComment("Island Command. What command users will run to access their island")
+    @ConfigComment("海岛主命令.")
     @ConfigEntry(path = "acid.command.island")
     private String playerCommandAliases = "ai";
 
-    @ConfigComment("The island admin command.")
+    @ConfigComment("海岛管理员指令.")
     @ConfigEntry(path = "acid.command.admin")
     private String adminCommandAliases = "acid";
     
-    @ConfigComment("The default action for new player command call.")
-    @ConfigComment("Sub-command of main player command that will be run on first player command call.")
-    @ConfigComment("By default it is sub-command 'create'.")
+    @ConfigComment("新玩家执行主命令时的操作.")
+    @ConfigComment("默认为 'create'.")
     @ConfigEntry(path = "acid.command.new-player-action", since = "1.13.1")
     private String defaultNewPlayerAction = "create";
 
-    @ConfigComment("The default action for player command.")
-    @ConfigComment("Sub-command of main player command that will be run on each player command call.")
-    @ConfigComment("By default it is sub-command 'go'.")
+    @ConfigComment("玩家执行主命令时的操作.")
+    @ConfigComment("默认为 'go'.")
     @ConfigEntry(path = "acid.command.default-action", since = "1.13.1")
     private String defaultPlayerAction = "go";
 
     /*      ACID        */
-    @ConfigComment("Acid can damage ops or not")
+    @ConfigComment("酸海是否可以腐蚀管理员")
     @ConfigEntry(path = "acid.damage-op")
     private boolean acidDamageOp = false;
 
-    @ConfigComment("Acid can damage chickens - best to leave false because they like to swim")
+    @ConfigComment("酸水是否可以腐蚀鸡 - 推荐关闭，鸡比较喜欢游泳")
     @ConfigEntry(path = "acid.damage-chickens")
     private boolean acidDamageChickens = false;
 
     // Damage
-    @ConfigComment("Damage that a player will experience in acid. 10 is half their health typically. 5 would be easier.")
+    @ConfigComment("玩家在酸海中受到的伤害. 10 为生命值的一半. 设为 5 可以使游戏简单一些.")
     @ConfigEntry(path = "acid.damage.acid.player")
     private int acidDamage = 10;
 
-    @ConfigComment("Damage that monsters experience from acid. Some monsters have armor or natural armor so will take less damage.")
+    @ConfigComment("酸海对怪物的伤害值. 有盔甲的怪物受到的伤害会减少.")
     @ConfigEntry(path = "acid.damage.acid.monster")
     private int acidDamageMonster = 5;
 
-    @ConfigComment("Damage animals experience from acid")
+    @ConfigComment("动物在酸海中受到的伤害值")
     @ConfigEntry(path = "acid.damage.acid.animal")
     private int acidDamageAnimal = 1;
 
-    @ConfigComment("Destroy items after this many seconds in acid. 0 = do not destroy items")
+    @ConfigComment("酸海中的物品在几秒后被腐蚀. 0 = 不腐蚀物品")
     @ConfigEntry(path = "acid.damage.acid.item")
     private long acidDestroyItemTime = 0;
 
-    @ConfigComment("Damage from acid rain (and snow, if toggled on).")
+    @ConfigComment("酸雨是否造成伤害.")
     @ConfigEntry(path = "acid.damage.rain")
     private int acidRainDamage = 1;
 
-    @ConfigComment("Damage from acid snow")
+    @ConfigComment("酸雪是否造成伤害")
     @ConfigEntry(path = "acid.damage.snow")
     private boolean acidDamageSnow;
 
-    @ConfigComment("Delay before acid or acid rain starts burning")
-    @ConfigComment("This can give time for conduit power to kick in")
+    @ConfigComment("开始受到伤害的延迟")
     @ConfigEntry(path = "acid.damage.delay")
     private long acidDamageDelay = 2;
 
-    @ConfigComment("Potion effects from going into acid water.")
-    @ConfigComment("You can list multiple effects.")
-    @ConfigComment("Available effects are:")
+    @ConfigComment("进入酸海后的药水效果.")
+    @ConfigComment("可设置多个.")
+    @ConfigComment("可用药水效果:")
     @ConfigComment("   BLINDNESS")
     @ConfigComment("   CONFUSION")
     @ConfigComment("   HUNGER")
@@ -107,13 +104,13 @@ public class AISettings implements WorldSettings {
     @ConfigEntry(path = "acid.damage.effects")
     @Adapter(PotionEffectListAdapter.class)
     private List<PotionEffectType> acidEffects = new ArrayList<>();
-    @ConfigComment("Acid effect duration in seconds")
+    @ConfigComment("药水效果持续时间")
     @ConfigEntry(path = "acid.damage.acid-effect-duration", since = "1.11.2")
     private int acidEffectDuation = 30;
 
-    @ConfigComment("Potion effects from going into acid rain and snow.")
-    @ConfigComment("You can list multiple effects.")
-    @ConfigComment("Available effects are:")
+    @ConfigComment("酸雨/雪附加的药水效果.")
+    @ConfigComment("可设多个.")
+    @ConfigComment("可用药水效果:")
     @ConfigComment("   BLINDNESS")
     @ConfigComment("   CONFUSION")
     @ConfigComment("   HUNGER")
@@ -125,36 +122,36 @@ public class AISettings implements WorldSettings {
     @Adapter(PotionEffectListAdapter.class)
     private List<PotionEffectType> acidRainEffects = new ArrayList<>();
 
-    @ConfigComment("Rain effect duration in seconds")
+    @ConfigComment("酸雨/雪药水效果持续时间")
     @ConfigEntry(path = "acid.damage.rain-effect-duration", since = "1.11.2")
     private int rainEffectDuation = 10;
 
-    @ConfigComment("If player wears a helmet then they will not suffer from acid rain")
+    @ConfigComment("玩家戴头盔后是否还受酸雨/雪影响，false 为受影响")
     @ConfigEntry(path = "acid.damage.protection.helmet")
     private boolean helmetProtection;
 
-    @ConfigComment("If player wears any set of full armor, they will not suffer from acid damage")
+    @ConfigComment("玩家穿整套盔甲将不会受到酸海影响，false 为受影响")
     @ConfigEntry(path = "acid.damage.protection.full-armor")
     private boolean fullArmorProtection;
 
 
     /*      WORLD       */
-    @ConfigComment("Friendly name for this world. Used in admin commands. Must be a single word")
+    @ConfigComment("酸海世界昵称. 可在管理员指令中使用. 仅输入一个单词")
     @ConfigEntry(path = "world.friendly-name", needsReset = true)
     private String friendlyName = "AcidIsland";
 
-    @ConfigComment("Name of the world - if it does not exist then it will be generated.")
-    @ConfigComment("It acts like a prefix for nether and end (e.g. acidisland_world, acidisland_world_nether, acidisland_world_end)")
+    @ConfigComment("酸岛世界的文件夹名称 - 不存在将会生成.")
+    @ConfigComment("对于末地和下界，此选项作为前缀 (比如 acidisland_world, acidisland_world_nether, acidisland_world_end)")
     @ConfigEntry(path = "world.world-name", needsReset = true)
     private String worldName = "acidisland_world";
 
-    @ConfigComment("World difficulty setting - PEACEFUL, EASY, NORMAL, HARD")
-    @ConfigComment("Other plugins may override this setting")
+    @ConfigComment("世界难度设置 - PEACEFUL, EASY, NORMAL, HARD")
+    @ConfigComment("其它插件可能覆盖此选项")
     @ConfigEntry(path = "world.difficulty")
     private Difficulty difficulty;
 
-    @ConfigComment("Spawn limits. These override the limits set in bukkit.yml")
-    @ConfigComment("If set to a negative number, the server defaults will be used")
+    @ConfigComment("生成限制. 此设置将覆盖 bukkit.yml 中的设置")
+    @ConfigComment("设为负数使用服务器默认设置")
     @ConfigEntry(path = "world.spawn-limits.monsters", since = "1.11.2")
     private int spawnLimitMonsters = -1;
     @ConfigEntry(path = "world.spawn-limits.animals", since = "1.11.2")
@@ -163,33 +160,33 @@ public class AISettings implements WorldSettings {
     private int spawnLimitWaterAnimals = -1;
     @ConfigEntry(path = "world.spawn-limits.ambient", since = "1.11.2")
     private int spawnLimitAmbient = -1;
-    @ConfigComment("Setting to 0 will disable animal spawns, but this is not recommended. Minecraft default is 400.")
-    @ConfigComment("A negative value uses the server default")
+    @ConfigComment("设为 0 将会禁止动物生成, 但不推荐. 默认为 400.")
+    @ConfigComment("设为负数使用服务器默认设置")
     @ConfigEntry(path = "world.spawn-limits.ticks-per-animal-spawns", since = "1.11.2")
     private int ticksPerAnimalSpawns = -1;
-    @ConfigComment("Setting to 0 will disable monster spawns, but this is not recommended. Minecraft default is 400.")
-    @ConfigComment("A negative value uses the server default")
+    @ConfigComment("设为 0 禁用怪物生成, 但不推荐. 默认为 400.")
+    @ConfigComment("设为负数以使用服务器默认设置")
     @ConfigEntry(path = "world.spawn-limits.ticks-per-monster-spawns", since = "1.11.2")
     private int ticksPerMonsterSpawns = -1;
 
-    @ConfigComment("Radius of island in blocks. (So distance between islands is twice this)")
-    @ConfigComment("Will be rounded up to the nearest 16 blocks.")
-    @ConfigComment("It is the same for every dimension : Overworld, Nether and End.")
-    @ConfigComment("This value cannot be changed mid-game and the plugin will not start if it is different.")
+    @ConfigComment("岛屿半径. (岛屿间距是此值的 2 倍)")
+    @ConfigComment("请设为 16 的倍数")
+    @ConfigComment("这对每个维度都有效: 主世界, 下界和末地.")
+    @ConfigComment("请不要中途改变此选项.")
     @ConfigEntry(path = "world.distance-between-islands", needsReset = true)
     private int islandDistance = 192;
 
-    @ConfigComment("Default protection range radius in blocks. Cannot be larger than distance.")
-    @ConfigComment("Admins can change protection sizes for players individually using /acid range set <player> <new range>")
-    @ConfigComment("or set this permission: acidisland.island.range.<number>")
+    @ConfigComment("默认保护范围. 不可以比上面的选项大.")
+    @ConfigComment("管理员可以使用 /acid range set <玩家> <范围> 单独为玩家设置保护范围")
+    @ConfigComment("或赋予权限: acidisland.island.range.<范围值>")
     @ConfigEntry(path = "world.protection-range", overrideOnChange = true)
     private int islandProtectionRange = 100;
 
-    @ConfigComment("Start islands at these coordinates. This is where new islands will start in the")
-    @ConfigComment("world. These must be a factor of your island distance, but the plugin will auto")
-    @ConfigComment("calculate the closest location on the grid. Islands develop around this location")
-    @ConfigComment("both positively and negatively in a square grid.")
-    @ConfigComment("If none of this makes sense, leave it at 0,0.")
+    @ConfigComment("首个岛屿的位置. 这是该世界的第一个岛屿所在的位置")
+    @ConfigComment("此值必须是岛屿半径(间距)的因数, 如果你算错了, 插件会自动为你纠正")
+    @ConfigComment("所有岛屿都会围绕此坐标生成")
+    @ConfigComment("因数: a × b = c, 则 a 和 b 为 c 的因数")
+    @ConfigComment("如果你看不懂这些, 请不要修改此选项")
     @ConfigEntry(path = "world.start-x", needsReset = true)
     private int islandStartX = 0;
 
@@ -201,282 +198,272 @@ public class AISettings implements WorldSettings {
     @ConfigEntry(path = "world.offset-z")
     private int islandZOffset;
 
-    @ConfigComment("Island height - Lowest is 5.")
-    @ConfigComment("It is the y coordinate of the bedrock block in the schem.")
+    @ConfigComment("岛屿海拔 - 最低为 5.")
+    @ConfigComment("这将是岛屿模板中的基岩所在的 y 坐标.")
     @ConfigEntry(path = "world.island-height")
     private int islandHeight = 50;
 
-    @ConfigComment("Use your own world generator for this world.")
-    @ConfigComment("In this case, the plugin will not generate anything.")
+    @ConfigComment("使用其它世界生成器.")
+    @ConfigComment("如果启用, 本扩展将不会接管世界的生成.")
     @ConfigEntry(path = "world.use-own-generator", experimental = true)
     private boolean useOwnGenerator;
 
-    @ConfigComment("Sea height (don't changes this mid-game unless you delete the world)")
-    @ConfigComment("Minimum is 0, which means you are playing Skyblock!")
+    @ConfigComment("酸海高度 (不要中途改变此选项除非删除世界)")
+    @ConfigComment("最低为 0, 将不会有酸海!")
     @ConfigEntry(path = "world.sea-height")
     private int seaHeight = 54;
 
-    @ConfigComment("Maximum number of islands in the world. Set to -1 or 0 for unlimited. ")
-    @ConfigComment("If the number of islands is greater than this number, no new island will be created.")
+    @ConfigComment("岛屿数量限制. 设为 -1 或 0 禁用.")
+    @ConfigComment("若岛屿数量 ≥ 此选项, 新玩家将无法再创建岛屿.")
     @ConfigEntry(path = "world.max-islands")
     private int maxIslands = -1;
 
-    @ConfigComment("The default game mode for this world. Players will be set to this mode when they create")
-    @ConfigComment("a new island for example. Options are SURVIVAL, CREATIVE, ADVENTURE, SPECTATOR")
+    @ConfigComment("默认游戏模式. 比如玩家创建岛屿时就会被设为此游戏模式")
+    @ConfigComment("可用项: SURVIVAL(生存模式), CREATIVE(创造模式), ADVENTURE(冒险模式), SPECTATOR(旁观模式)")
     @ConfigEntry(path = "world.default-game-mode")
     private GameMode defaultGameMode = GameMode.SURVIVAL;
 
-    @ConfigComment("The default biome for the overworld")
+    @ConfigComment("默认生物群系(仅主世界有效)")
     @ConfigEntry(path = "world.default-biome")
     private Biome defaultBiome = Biome.WARM_OCEAN;
 
-    @ConfigComment("The maximum number of players a player can ban at any one time in this game mode.")
-    @ConfigComment("The permission acidisland.ban.maxlimit.X where X is a number can also be used per player")
-    @ConfigComment("-1 = unlimited")
+    @ConfigComment("玩家默认一次最多能封禁多少个玩家.")
+    @ConfigComment("权限为 acidisland.ban.maxlimit.X")
+    @ConfigComment("-1 = 无限")
     @ConfigEntry(path = "world.ban-limit")
     private int banLimit = -1;
 
     // Nether
-    @ConfigComment("Generate Nether - if this is false, the nether world will not be made and access to")
-    @ConfigComment("the nether will not occur. Other plugins may still enable portal usage.")
-    @ConfigComment("Note: Some default challenges will not be possible if there is no nether.")
-    @ConfigComment("Note that with a standard nether all players arrive at the same portal and entering a")
-    @ConfigComment("portal will return them back to their islands.")
+    @ConfigComment("是否生成下界 - 若设为 false, 下界将不会生成且下界传送门将无效. 某些插件可能仍会启用下界传送门.")
+    @ConfigComment("注意: 某些默认挑战需要下界才能完成.")
+    @ConfigComment("不管玩家从何处进入下界")
+    @ConfigComment("在下界进入传送门时都会传送到自己的岛屿上.")
     @ConfigEntry(path = "world.nether.generate")
     private boolean netherGenerate = true;
 
-    @ConfigComment("Islands in Nether. Change to false for standard vanilla nether.")
+    @ConfigComment("是否生成岛屿. 设为 false 将生成原版下界.")
     @ConfigEntry(path = "world.nether.islands", needsReset = true)
     private boolean netherIslands = true;
 
-    @ConfigComment("Sea height in Nether. Only operates if nether islands is true.")
-    @ConfigComment("Changing mid-game will cause problems!")
+    @ConfigComment("下界的酸海高度，仅上方设置为 true 时有效")
+    @ConfigComment("中途改变此设置将会引发问题!")
     @ConfigEntry(path = "world.nether.sea-height", needsReset = true)
     private int netherSeaHeight = 54;
 
-    @ConfigComment("Make the nether roof, if false, there is nothing up there")
-    @ConfigComment("Change to false if lag is a problem from the generation")
-    @ConfigComment("Only applies to islands Nether")
+    @ConfigComment("是否生成下界顶层, 若为 false, 下界顶层将不会生成")
+    @ConfigComment("若生成卡顿, 可以考虑关闭此功能")
+    @ConfigComment("仅对下界生效")
     @ConfigEntry(path = "world.nether.roof")
     private boolean netherRoof = true;
 
-    @ConfigComment("Nether spawn protection radius - this is the distance around the nether spawn")
-    @ConfigComment("that will be protected from player interaction (breaking blocks, pouring lava etc.)")
-    @ConfigComment("Minimum is 0 (not recommended), maximum is 100. Default is 25.")
-    @ConfigComment("Only applies to vanilla nether")
+    @ConfigComment("下界出生点保护")
+    @ConfigComment("在此范围内的玩家无法进行任何世界交互")
+    @ConfigComment("最小为 0 (不推荐), 最大为 100. 默认为 25.")
+    @ConfigComment("仅对原版下界有效, 即上方 islands 设为 false")
     @ConfigEntry(path = "world.nether.spawn-radius")
     private int netherSpawnRadius = 32;
 
     // End
-    @ConfigComment("End Nether - if this is false, the end world will not be made and access to")
-    @ConfigComment("the end will not occur. Other plugins may still enable portal usage.")
+    @ConfigComment("是否启用末地")
     @ConfigEntry(path = "world.end.generate")
     private boolean endGenerate = true;
 
-    @ConfigComment("Islands in The End. Change to false for standard vanilla end.")
+    @ConfigComment("是否生成岛屿，设为 false 将生成原版末地")
     @ConfigEntry(path = "world.end.islands", needsReset = true)
     private boolean endIslands = true;
 
-    @ConfigComment("Sea height in The End. Only operates if end islands is true.")
-    @ConfigComment("Changing mid-game will cause problems!")
+    @ConfigComment("末地的酸海高度，仅上方设置为 true 时有效.")
+    @ConfigComment("中途改变此设置将引发问题!")
     @ConfigEntry(path = "world.end.sea-height", needsReset = true)
     private int endSeaHeight = 54;
 
     @ConfigEntry(path = "world.end.dragon-spawn", experimental = true)
     private boolean dragonSpawn = false;
 
-    @ConfigComment("Removing mobs - this kills all monsters in the vicinity. Benefit is that it helps")
-    @ConfigComment("players return to their island if the island has been overrun by monsters.")
-    @ConfigComment("This setting is toggled in world flags and set by the settings GUI.")
-    @ConfigComment("Mob white list - these mobs will NOT be removed when logging in or doing /island")
+    @ConfigComment("敌对生物允许名单 - 这些生物不会在执行 /island 命令或登录时清除")
     @ConfigEntry(path = "world.remove-mobs-whitelist")
     private Set<EntityType> removeMobsWhitelist = new HashSet<>();
 
-    @ConfigComment("World flags. These are boolean settings for various flags for this world")
+    @ConfigComment("世界设置.")
     @ConfigEntry(path = "world.flags")
     private Map<String, Boolean> worldFlags = new HashMap<>();
 
-    @ConfigComment("These are the default protection settings for new islands.")
-    @ConfigComment("The value is the minimum island rank required allowed to do the action")
-    @ConfigComment("Ranks are: Visitor = 0, Member = 900, Owner = 1000")
+    @ConfigComment("这是新岛屿的默认保护策略.")
+    @ConfigComment("只有等级大于等于所设值时才能执行该行为")
+    @ConfigComment("等级列表: 游客 = 0, 成员 = 900, 岛主 = 1000")
     @ConfigEntry(path = "world.default-island-flags")
     @Adapter(FlagSerializer.class)
     private Map<Flag, Integer> defaultIslandFlags = new HashMap<>();
 
-    @ConfigComment("These are the default settings for new islands")
+    @ConfigComment("新岛屿的默认设置")
     @ConfigEntry(path = "world.default-island-settings")
     @Adapter(FlagSerializer2.class)
     private Map<Flag, Integer> defaultIslandSettings = new HashMap<>();
 
-    @ConfigComment("These settings/flags are hidden from users")
-    @ConfigComment("Ops can toggle hiding in-game using SHIFT-LEFT-CLICK on flags in settings")
+    @ConfigComment("这些设置将对玩家隐藏")
+    @ConfigComment("当然你也可以在游戏中设置隐藏/显示(见 Wiki)")
     @ConfigEntry(path = "world.hidden-flags")
     private List<String> hiddenFlags = new ArrayList<>();
 
-    @ConfigComment("Visitor banned commands - Visitors to islands cannot use these commands in this world")
+    @ConfigComment("游客不可以在岛屿内使用这些指令")
     @ConfigEntry(path = "world.visitor-banned-commands")
     private List<String> visitorBannedCommands = new ArrayList<>();
 
-    @ConfigComment("Falling banned commands - players cannot use these commands when falling")
-    @ConfigComment("if the PREVENT_TELEPORT_WHEN_FALLING world setting flag is active")
+    @ConfigComment("玩家不可以在掉落时使用这些指令")
+    @ConfigComment("仅在 PREVENT_TELEPORT_WHEN_FALLING 设置开启时有效")
     @ConfigEntry(path = "world.falling-banned-commands")
     private List<String> fallingBannedCommands = new ArrayList<>();
 
     // ---------------------------------------------
 
     /*      ISLAND      */
-    @ConfigComment("Default max team size")
-    @ConfigComment("Use this permission to set for specific user groups: acidisland.team.maxsize.<number>")
-    @ConfigComment("Permission size cannot be less than the default below.")
+    @ConfigComment("队伍的最大人数")
+    @ConfigComment("用权限设置的人数不可低于此值.")
+    @ConfigComment("权限为: acidisland.team.maxsize.<人数>")
     @ConfigEntry(path = "island.max-team-size")
     private int maxTeamSize = 4;
 
-    @ConfigComment("Default maximum number of coop rank members per island")
-    @ConfigComment("Players can have the acidisland.coop.maxsize.<number> permission to be bigger but")
-    @ConfigComment("permission size cannot be less than the default below. ")
+    @ConfigComment("每个岛屿的合作者的最大人数")
+    @ConfigComment("赋予玩家 acidisland.coop.maxsize.<人数> 权限可覆盖此选项")
+    @ConfigComment("权限所设人数不得小于此值")
     @ConfigEntry(path = "island.max-coop-size", since = "1.13.0")
     private int maxCoopSize = 4;
 
-    @ConfigComment("Default maximum number of trusted rank members per island")
-    @ConfigComment("Players can have the acidisland.trust.maxsize.<number> permission to be bigger but")
-    @ConfigComment("permission size cannot be less than the default below. ")
+    @ConfigComment("每个岛屿最多可以有多少个受信任玩家")
+    @ConfigComment("赋予玩家 acidisland.trust.maxsize.<人数> 权限可覆盖此选项")
+    @ConfigComment("权限所设人数不得小于此值")
     @ConfigEntry(path = "island.max-trusted-size", since = "1.13.0")
     private int maxTrustSize = 4;
 
-    @ConfigComment("Default maximum number of homes a player can have. Min = 1")
-    @ConfigComment("Accessed via /ai sethome <number> or /ai go <number>")
-    @ConfigComment("Use this permission to set for specific user groups: acidisland.island.maxhomes.<number>")
+    @ConfigComment("每个玩家最多可以有几个家. 最少 = 1")
+    @ConfigComment("多于 1 个家的指令格式: /ai sethome <第几个家> 或 /ai go <第几个家>")
+    @ConfigComment("权限: acidisland.island.maxhomes.<数量>")
     @ConfigEntry(path = "island.max-homes")
     private int maxHomes = 5;
 
     // Reset
-    @ConfigComment("How many resets a player is allowed (manage with /acid reset add/remove/reset/set command)")
-    @ConfigComment("Value of -1 means unlimited, 0 means hardcore - no resets.")
-    @ConfigComment("Example, 2 resets means they get 2 resets or 3 islands lifetime")
+    @ConfigComment("玩家最多可以重置多少次岛屿 (可使用 /acid reset add/remove/reset/set 指令设置)")
+    @ConfigComment("-1 意为无限, 0 为禁止重置.")
+    @ConfigComment("比如, 2 次重置表示玩家有 2 次重置机会或 3 次获得新岛屿的机会")
     @ConfigEntry(path = "island.reset.reset-limit")
     private int resetLimit = -1;
 
-    @ConfigComment("Kicked or leaving players lose resets")
-    @ConfigComment("Players who leave a team will lose an island reset chance")
-    @ConfigComment("If a player has zero resets left and leaves a team, they cannot make a new")
-    @ConfigComment("island by themselves and can only join a team.")
-    @ConfigComment("Leave this true to avoid players exploiting free islands")
+    @ConfigComment("被踢出或主动离开队伍的玩家将会失去一次岛屿重置机会")
+    @ConfigComment("如果玩家的重置机会为 0, 且离开了队伍, 该玩家将不能再创建新岛屿, 只能加入其它队伍")
+    @ConfigComment("设为 true 可以避免玩家用不正常的方式使用队伍功能")
     @ConfigEntry(path = "island.reset.leavers-lose-reset")
     private boolean leaversLoseReset = false;
 
-    @ConfigComment("Allow kicked players to keep their inventory.")
-    @ConfigComment("Overrides the on-leave inventory reset for kicked players.")
+    @ConfigComment("保留被踢出玩家的背包物品.")
+    @ConfigComment("此项将覆盖 on-leave.inventory 设置.")
     @ConfigEntry(path = "island.reset.kicked-keep-inventory")
     private boolean kickedKeepInventory = false;
 
-    @ConfigComment("What the plugin should reset when the player joins or creates an island")
-    @ConfigComment("Reset Money - if this is true, will reset the player's money to the starting money")
-    @ConfigComment("Recommendation is that this is set to true, but if you run multi-worlds")
-    @ConfigComment("make sure your economy handles multi-worlds too.")
+    @ConfigComment("当玩家创建或加入一个岛屿时扩展是否重置这些项目")
+    @ConfigComment("重置金钱 - 若为 true, 将会将玩家的金钱重置为默认值")
+    @ConfigComment("推荐开启此功能, 但是如果你的服务器上还有其他玩法且你还想开启此功能")
+    @ConfigComment("请使用支持不同世界不同金钱的插件.")
     @ConfigEntry(path = "island.reset.on-join.money")
     private boolean onJoinResetMoney = false;
 
-    @ConfigComment("Reset inventory - if true, the player's inventory will be cleared.")
-    @ConfigComment("Note: if you have MultiInv running or a similar inventory control plugin, that")
-    @ConfigComment("plugin may still reset the inventory when the world changes.")
+    @ConfigComment("重置背包 - 若为 true, 玩家的背包将会被清空.")
+    @ConfigComment("注意: 如果你安装了 MultiInv 或其他相似的背包管理插件, 那些插件仍会在")
+    @ConfigComment("切换世界时更换玩家的背包.")
     @ConfigEntry(path = "island.reset.on-join.inventory")
     private boolean onJoinResetInventory = false;
 
-    @ConfigComment("Reset health - if true, the player's health will be reset.")
+    @ConfigComment("重置血量 - 若为 true, 玩家将被治愈.")
     @ConfigEntry(path = "island.reset.on-join.health")
     private boolean onJoinResetHealth = true;
 
-    @ConfigComment("Reset hunger - if true, the player's hunger will be reset.")
+    @ConfigComment("重置饥饿值 - 若为 true, 玩家将被喂饱.")
     @ConfigEntry(path = "island.reset.on-join.hunger")
     private boolean onJoinResetHunger = true;
 
-    @ConfigComment("Reset experience points - if true, the player's experience will be reset.")
+    @ConfigComment("重置经验值 - 若为 true, 玩家的经验值将被重置.")
     @ConfigEntry(path = "island.reset.on-join.exp")
     private boolean onJoinResetXP = false;
 
-    @ConfigComment("Reset Ender Chest - if true, the player's Ender Chest will be cleared.")
+    @ConfigComment("重置末影箱 - 若为 true, 玩家末影箱中的物品将被清空.")
     @ConfigEntry(path = "island.reset.on-join.ender-chest")
     private boolean onJoinResetEnderChest = false;
 
-    @ConfigComment("What the plugin should reset when the player leaves or is kicked from an island")
-    @ConfigComment("Reset Money - if this is true, will reset the player's money to the starting money")
-    @ConfigComment("Recommendation is that this is set to true, but if you run multi-worlds")
-    @ConfigComment("make sure your economy handles multi-worlds too.")
+    @ConfigComment("当玩家离开/被踢出一个岛屿时,扩展是否重置以下项目")
+    @ConfigComment("重置金钱 - 若为 true, 将会将玩家的金钱重置为默认值")
+    @ConfigComment("推荐开启此功能, 但是如果你的服务器上还有其他玩法且你还想开启此功能")
+    @ConfigComment("请使用支持不同世界不同金钱的插件.")
     @ConfigEntry(path = "island.reset.on-leave.money")
     private boolean onLeaveResetMoney = false;
 
-    @ConfigComment("Reset inventory - if true, the player's inventory will be cleared.")
-    @ConfigComment("Note: if you have MultiInv running or a similar inventory control plugin, that")
-    @ConfigComment("plugin may still reset the inventory when the world changes.")
+    @ConfigComment("重置背包 - 若为 true, 玩家的背包将会被清空.")
+    @ConfigComment("注意: 如果你安装了 MultiInv 或其他相似的背包管理插件, 那些插件仍会在")
+    @ConfigComment("切换世界时更换玩家的背包.")
     @ConfigEntry(path = "island.reset.on-leave.inventory")
     private boolean onLeaveResetInventory = false;
 
-    @ConfigComment("Reset health - if true, the player's health will be reset.")
+    @ConfigComment("重置血量 - 若为 true, 玩家将被治愈.")
     @ConfigEntry(path = "island.reset.on-leave.health")
     private boolean onLeaveResetHealth = false;
 
-    @ConfigComment("Reset hunger - if true, the player's hunger will be reset.")
+    @ConfigComment("重置饥饿值 - 若为 true, 玩家将被喂饱.")
     @ConfigEntry(path = "island.reset.on-leave.hunger")
     private boolean onLeaveResetHunger = false;
 
-    @ConfigComment("Reset experience - if true, the player's experience will be reset.")
+    @ConfigComment("重置经验值 - 若为 true, 玩家的经验值将被重置.")
     @ConfigEntry(path = "island.reset.on-leave.exp")
     private boolean onLeaveResetXP = false;
 
-    @ConfigComment("Reset Ender Chest - if true, the player's Ender Chest will be cleared.")
+    @ConfigComment("重置末影箱 - 若为 true, 玩家末影箱中的物品将被清空.")
     @ConfigEntry(path = "island.reset.on-leave.ender-chest")
     private boolean onLeaveResetEnderChest = false;
 
-    @ConfigComment("Toggles the automatic island creation upon the player's first login on your server.")
-    @ConfigComment("If set to true,")
-    @ConfigComment("   * Upon connecting to your server for the first time, the player will be told that")
-    @ConfigComment("    an island will be created for him.")
-    @ConfigComment("  * Make sure you have a Blueprint Bundle called \"default\": this is the one that will")
-    @ConfigComment("    be used to create the island.")
-    @ConfigComment("  * An island will be created for the player without needing him to run the create command.")
-    @ConfigComment("If set to false, this will disable this feature entirely.")
-    @ConfigComment("Warning:")
-    @ConfigComment("  * If you are running multiple gamemodes on your server, and all of them have")
-    @ConfigComment("    this feature enabled, an island in all the gamemodes will be created simultaneously.")
-    @ConfigComment("    However, it is impossible to know on which island the player will be teleported to afterwards.")
-    @ConfigComment("  * Island creation can be resource-intensive, please consider the options below to help mitigate")
-    @ConfigComment("    the potential issues, especially if you expect a lot of players to connect to your server")
-    @ConfigComment("    in a limited period of time.")
+    @ConfigComment("是否在玩家第一次进入服务器时自动创建该玩家的岛屿.")
+    @ConfigComment("若设为 true,")
+    @ConfigComment("   * 当玩家第一次加入服务器时, 该玩家将被告知")
+    @ConfigComment("    岛屿已创建.")
+    @ConfigComment("  * 请确保你有一个叫 \"default\" 的模板: 此功能将用")
+    @ConfigComment("    此模板创建岛屿.")
+    @ConfigComment("  * 玩家不必执行指令即可创建岛屿.")
+    @ConfigComment("若设为 false, 此功能将被完全禁用.")
+    @ConfigComment("警告:")
+    @ConfigComment("  * 如果你的服务器(单端)运行了多个游戏模式, 并且都")
+    @ConfigComment("    开启了此功能, 所有游戏模式的岛屿都会被自动创建.")
+    @ConfigComment("    但是, 玩家之后将被传送到哪个游戏模式是随机的.")
+    @ConfigComment("  * 创建岛屿是比较占用服务器性能的, 请认真考虑是否启用此功能")
+    @ConfigComment("来相对的避免潜在的问题发生, 尤其是服务器人流量较大时.")
     @ConfigEntry(path = "island.create-island-on-first-login.enable")
     private boolean createIslandOnFirstLoginEnabled;
 
-    @ConfigComment("Time in seconds after the player logged in, before his island gets created.")
-    @ConfigComment("If set to 0 or less, the island will be created directly upon the player's login.")
-    @ConfigComment("It is recommended to keep this value under a minute's time.")
+    @ConfigComment("玩家登录服务器多少秒后, 岛屿将开始创建.")
+    @ConfigComment("若所设值 ≤ 0, 岛屿将在玩家登录时立即创建.")
+    @ConfigComment("建议此值不要大于 1 分钟(60 秒).")
     @ConfigEntry(path = "island.create-island-on-first-login.delay")
     private int createIslandOnFirstLoginDelay = 5;
 
-    @ConfigComment("Toggles whether the island creation should be aborted if the player logged off while the")
-    @ConfigComment("delay (see the option above) has not worn off yet.")
-    @ConfigComment("If set to true,")
-    @ConfigComment("  * If the player has logged off the server while the delay (see the option above) has not")
-    @ConfigComment("    worn off yet, this will cancel the island creation.")
-    @ConfigComment("  * If the player relogs afterward, since he will not be recognized as a new player, no island")
-    @ConfigComment("    would be created for him.")
-    @ConfigComment("  * If the island creation started before the player logged off, it will continue.")
-    @ConfigComment("If set to false, the player's island will be created even if he went offline in the meantime.")
-    @ConfigComment("Note this option has no effect if the delay (see the option above) is set to 0 or less.")
+    @ConfigComment("若玩家在上方所设的时间内离开了服务器")
+    @ConfigComment("是否停止岛屿的创建.")
+    @ConfigComment("若设为 true,")
+    @ConfigComment("  * 若玩家在延缓期内离开了服务器，岛屿创建会停止.")
+    @ConfigComment("    * 若玩家之后又加入了服务器，ta 不会再被视为新玩家，因此岛屿不会自动创建.")
+    @ConfigComment("  * 若玩家在岛屿创建阶段离开了服务器, 岛屿会继续创建.")
+    @ConfigComment("若设为 false, 无论如何岛屿都会在延迟过后创建.")
+    @ConfigComment("若上方选项小于等于 0 ，此设置无任何效果.")
     @ConfigEntry(path = "island.create-island-on-first-login.abort-on-logout")
     private boolean createIslandOnFirstLoginAbortOnLogout = true;
 
-    @ConfigComment("Create Nether or End islands if they are missing when a player goes through a portal.")
-    @ConfigComment("Nether and End islands are usually pasted when a player makes their island, but if they are")
-    @ConfigComment("missing for some reason, you can switch this on.")
+    @ConfigComment("当玩家进入传送门时，如果末地/下界岛屿不存在是否生成.")
+    @ConfigComment("一般末地和下界岛屿都会在玩家创建岛屿时自动生成，但是")
+    @ConfigComment("由于某些神奇的原因导致它们没有生成时，可以开启此选项.")
     @ConfigComment("Note that bedrock removal glitches can exploit this option.")
     @ConfigEntry(path = "island.create-missing-nether-end-islands")
     private boolean pasteMissingIslands = false;
 
     // Commands
-    @ConfigComment("List of commands to run when a player joins.")
+    @ConfigComment("当玩家加入或创建岛屿时执行的指令.")
     @ConfigEntry(path = "island.commands.on-join")
     private List<String> onJoinCommands = new ArrayList<>();
 
-    @ConfigComment("list of commands to run when a player leaves.")
+    @ConfigComment("当玩家离开岛屿、重置岛屿或被踢出岛屿时执行的指令.")
     @ConfigEntry(path = "island.commands.on-leave")
     private List<String> onLeaveCommands = new ArrayList<>();
 
@@ -494,19 +481,19 @@ public class AISettings implements WorldSettings {
     private boolean requireConfirmationToSetHomeInTheEnd = true;
 
     // Deaths
-    @ConfigComment("Whether deaths are counted or not.")
+    @ConfigComment("是否记录死亡次数.")
     @ConfigEntry(path = "island.deaths.counted")
     private boolean deathsCounted = true;
 
-    @ConfigComment("Maximum number of deaths to count. The death count can be used by add-ons.")
+    @ConfigComment("最多记录的死亡次数. 死亡数可能会被其它扩展使用.")
     @ConfigEntry(path = "island.deaths.max")
     private int deathsMax = 10;
 
-    @ConfigComment("When a player joins a team, reset their death count")
+    @ConfigComment("当玩家加入一个队伍时，重置 ta 的死亡数")
     @ConfigEntry(path = "island.deaths.team-join-reset")
     private boolean teamJoinDeathReset = true;
 
-    @ConfigComment("Reset player death count when they start a new island or reset and island")
+    @ConfigComment("是否在玩家创建新岛/重置岛屿时重置死亡数")
     @ConfigEntry(path = "island.deaths.reset-on-new-island")
     private boolean deathsResetOnNewIsland = true;
 
@@ -517,19 +504,19 @@ public class AISettings implements WorldSettings {
     // ---------------------------------------------
 
     /*      PROTECTION      */
-    @ConfigComment("Geo restrict mobs.")
-    @ConfigComment("Mobs that exit the island space where they were spawned will be removed.")
+    @ConfigComment("区域限制型生物.")
+    @ConfigComment("离开出生岛的这些生物将被移除.")
     @ConfigEntry(path = "protection.geo-limit-settings")
     private List<String> geoLimitSettings = new ArrayList<>();
 
     // Invincible visitor settings
-    @ConfigComment("Invincible visitors. List of damages that will not affect visitors.")
-    @ConfigComment("Make list blank if visitors should receive all damages")
+    @ConfigComment("无敌游客设置. 这些伤害不会影响游客.")
+    @ConfigComment("留空以关闭无敌游客模式")
     @ConfigEntry(path = "protection.invincible-visitors")
     private List<String> ivSettings = new ArrayList<>();
 
     //---------------------------------------------------------------------------------------/
-    @ConfigComment("These settings should not be edited")
+    @ConfigComment("请勿修改此处")
     @ConfigEntry(path = "do-not-edit-these-settings.reset-epoch")
     private long resetEpoch = 0;
 
